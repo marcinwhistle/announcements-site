@@ -8,4 +8,6 @@ router.get('/announcements/:id', AnnouncementController.getById);
 
 router.post('/announcements', AnnouncementController.addAnnouncement);
 
+router.delete('/announcements/:id', AnnouncementController.deleteAnnouncement);
+
 module.exports = router;
