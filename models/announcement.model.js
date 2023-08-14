@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const announcementSchema = new mongoose.Schema({
-  _id: { type: mongoose.Types.ObjectId, required: true },
   title: { type: String, required: true, minLength: 10, maxLength: 50 },
   detail: { type: String, required: true, minLength: 20, maxLength: 1000 },
   date: { type: Date, required: true },
