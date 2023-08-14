@@ -74,3 +74,21 @@ exports.updateAnnouncement = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.searchByPhrase = async (req, res) => {
+  try {
+    const searchPhrase = req.params.searchPhrase;
+
+    const matchingAnnouncements = await Announcement.find({
+      title: { $regex: searchPhrase, $options: 'i' },
+    });
+
+    if (matchingAnnouncements.length > 0) {
+      res.json(matchingAnnouncements);
+    } else {
+      res.status(404).json({ message: 'No mathing announcements found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

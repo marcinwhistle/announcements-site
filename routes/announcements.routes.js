@@ -12,4 +12,9 @@ router.delete('/announcements/:id', AnnouncementController.deleteAnnouncement);
 
 router.put('/announcements/:id', AnnouncementController.updateAnnouncement);
 
+router.get(
+  '/announcements/search/:searchPhrase',
+  AnnouncementController.searchByPhrase
+);
+
 module.exports = router;
