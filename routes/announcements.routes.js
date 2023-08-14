@@ -10,4 +10,6 @@ router.post('/announcements', AnnouncementController.addAnnouncement);
 
 router.delete('/announcements/:id', AnnouncementController.deleteAnnouncement);
 
+router.put('/announcements/:id', AnnouncementController.updateAnnouncement);
+
 module.exports = router;
