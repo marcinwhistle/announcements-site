@@ -18,3 +18,22 @@ exports.getById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.addAnnouncement = async (req, res) => {
+  try {
+    const { title, detail, date, photo, price, location, seller } = req.body;
+    const newAnnouncement = new Announcement({
+      title: title,
+      detail: detail,
+      date: date,
+      photo: photo,
+      price: price,
+      location: location,
+      seller: seller,
+    });
+    await newAnnouncement.save();
+    res.json({ message: 'Announcement has been added' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
