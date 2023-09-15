@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors'); // Import the 'cors' middleware
 
 const announcementsRoutes = require('./routes/announcements.routes');
+const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -13,10 +14,7 @@ app.use(express.static(path.join(__dirname, 'client/public')));
 app.use(express.json());
 
 app.use('/api', announcementsRoutes);
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-// });
+app.use('/auth', authRoutes);
 
 app.use((req, res) => {
   res.status(404).send({ message: 'Not found...' });
