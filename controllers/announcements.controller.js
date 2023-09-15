@@ -24,7 +24,7 @@ exports.getById = async (req, res) => {
 
 exports.addAnnouncement = async (req, res) => {
   try {
-    const { title, detail, date, photo, price, location, seller } = req.body;
+    const { title, detail, date, photo, price, location, author } = req.body;
     const newAnnouncement = new Announcement({
       title: title,
       detail: detail,
@@ -32,7 +32,7 @@ exports.addAnnouncement = async (req, res) => {
       photo: photo,
       price: price,
       location: location,
-      seller: seller,
+      author: author,
     });
     await newAnnouncement.save();
     res.json({ message: 'Announcement has been added' });
@@ -55,7 +55,7 @@ exports.deleteAnnouncement = async (req, res) => {
 };
 
 exports.updateAnnouncement = async (req, res) => {
-  const { title, detail, date, photo, price, location, seller } = req.body;
+  const { title, detail, date, photo, price, location, author } = req.body;
   try {
     const updatedAnnouncement = await Announcement.findByIdAndUpdate(
       req.params.id,
@@ -66,7 +66,7 @@ exports.updateAnnouncement = async (req, res) => {
         photo: photo,
         price: price,
         location: location,
-        seller: seller,
+        author: author,
       },
       { returnDocument: 'after' }
     );

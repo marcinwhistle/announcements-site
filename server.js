@@ -12,6 +12,7 @@ app.use(cors());
 //Serve static file from the 'public' directory
 app.use(express.static(path.join(__dirname, 'client/public')));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', announcementsRoutes);
 app.use('/auth', authRoutes);
