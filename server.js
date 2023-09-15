@@ -20,6 +20,8 @@ app.use(
     store: MongoStore.create({
       mongoUrl: 'mongodb://localhost:27017/announcementSiteDB',
     }),
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
