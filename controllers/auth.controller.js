@@ -56,6 +56,8 @@ exports.login = async (req, res) => {
           res.status(400).send({ message: 'Login or password are incorrect' });
         }
       }
+    } else {
+      res.status(400).send({ message: 'Bad request' });
     }
   } catch (err) {
     res.status(500).send({ message: err.message });
