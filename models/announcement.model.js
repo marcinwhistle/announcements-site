@@ -7,7 +7,7 @@ const announcementSchema = new mongoose.Schema({
   photo: { type: String, required: true },
   price: { type: Number, required: true },
   location: { type: String, required: true },
-  seller: { type: String, required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 module.exports = mongoose.model('Announcement', announcementSchema);

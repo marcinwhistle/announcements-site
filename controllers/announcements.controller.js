@@ -2,7 +2,7 @@ const Announcement = require('../models/announcement.model');
 
 exports.getAll = async (req, res) => {
   try {
-    res.json(await Announcement.find());
+    res.json(await Announcement.find().populate('author'));
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -10,7 +10,9 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
   try {
-    const announcement = await Announcement.findById(req.params.id);
+    const announcement = await Announcement.findById(req.params.id).populate(
+      'author'
+    );
     if (!announcement)
       res.status(404).json({ message: 'Announcement not found...' });
     else res.json(announcement);
