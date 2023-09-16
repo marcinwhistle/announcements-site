@@ -70,10 +70,5 @@ exports.login = async (req, res) => {
 };
 
 exports.getUser = async (req, res) => {
-  if (req.session.user) {
-    const { login, userId } = req.session.user;
-    res.send({ login, userId });
-  } else {
-    res.status(401).send({ message: 'Unauthorized' });
-  }
+  res.send({ message: req.session.user });
 };
