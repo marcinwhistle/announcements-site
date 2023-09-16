@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const cors = require('cors'); // Import the 'cors' middleware
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+//Load dotenv configure file .env
+require('dotenv').config();
+
+const sessionSecret = process.env.SESSION_SECRET;
 
 const announcementsRoutes = require('./routes/announcements.routes');
 const authRoutes = require('./routes/auth.routes');
@@ -23,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
-    secret: 'yzf600',
+    secret: sessionSecret,
     cookie: {
       secure: process.env.NODE_ENV == 'production',
     },
