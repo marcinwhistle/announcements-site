@@ -11,12 +11,22 @@ const authRoutes = require('./routes/auth.routes');
 const app = express();
 
 //add middleware
-app.use(cors());
+if (process.env.NODE_ENV !== 'production') {
+  app.use(
+    cors({
+      origin: ['http://localhost:3000'],
+      credentials: true,
+    })
+  );
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
     secret: 'yzf600',
+    cookie: {
+      secure: process.env.NODE_ENV == 'production',
+    },
     store: MongoStore.create({
       mongoUrl: 'mongodb://localhost:27017/announcementSiteDB',
     }),
