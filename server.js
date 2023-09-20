@@ -39,11 +39,12 @@ app.use(
   })
 );
 
-//Serve static file from the 'public' directory
-app.use(express.static(path.join(__dirname, 'client/public')));
 // add routes
 app.use('/api', announcementsRoutes);
 app.use('/auth', authRoutes);
+//Serve static file from the 'public' directory
+app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 //at any other link, just server react app
 // app.get('*', (req, res) => {
